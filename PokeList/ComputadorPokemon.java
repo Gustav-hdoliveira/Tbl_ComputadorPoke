@@ -5,23 +5,26 @@
 package PokeList;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author GUSTAVOHENRIQUEDEOLI
  */
 public class ComputadorPokemon extends javax.swing.JFrame {
-    Pokemon DadosPokemon = new ComputadorBancoPokemon();
+    ComputadorBancoPokemon DadosComputador = new ComputadorBancoPokemon();
+    
     /**
      * Creates new form ComputadorPokemon
      */
     
-    private DefaultListModel<String> modeloLista;
     
     public ComputadorPokemon() {
         initComponents();
         modeloLista = new DefaultListModel<>();
-        ListaPokemonComputador.setModel(modeloLista);
+        modeloLista.setModel(modeloLista);
+        modeloLista2 = new DefaultListModel<>();
+        modeloLista.setModel(modeloLista2);
     }
 
     /**
@@ -35,30 +38,21 @@ public class ComputadorPokemon extends javax.swing.JFrame {
 
         TelaComputador = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ListaPokemonComputador = new javax.swing.JList<>();
+        modeloLista = new javax.swing.JList<>();
         btnCompPmochila = new javax.swing.JButton();
         IndicadorComputador = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        ListaPokemonMochila = new javax.swing.JList<>();
+        modeloLista2 = new javax.swing.JList<>();
         IndicadorMochila = new javax.swing.JLabel();
         btnMochilaPcomp = new javax.swing.JButton();
         txtAnuncios = new javax.swing.JLabel();
-        txtFieldNome = new javax.swing.JTextField();
-        txtFieldTipo = new javax.swing.JTextField();
-        txtFieldLevel = new javax.swing.JTextField();
-        addParaComputador = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
 
         TelaComputador.setBackground(new java.awt.Color(255, 102, 0));
 
-        ListaPokemonComputador.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Lista_Vazia" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(ListaPokemonComputador);
+        jScrollPane1.setViewportView(modeloLista);
 
         btnCompPmochila.setText("Para a mochila");
         btnCompPmochila.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +64,7 @@ public class ComputadorPokemon extends javax.swing.JFrame {
         IndicadorComputador.setFont(new java.awt.Font("SimSun", 0, 18)); // NOI18N
         IndicadorComputador.setText("Computador");
 
-        jScrollPane3.setViewportView(ListaPokemonMochila);
+        jScrollPane3.setViewportView(modeloLista2);
 
         IndicadorMochila.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         IndicadorMochila.setText("Mochila");
@@ -85,93 +79,44 @@ public class ComputadorPokemon extends javax.swing.JFrame {
         txtAnuncios.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         txtAnuncios.setText("Gerencionamento de Pokemon");
 
-        txtFieldNome.setText("Nome");
-        txtFieldNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldNomeActionPerformed(evt);
-            }
-        });
-
-        txtFieldTipo.setText("Tipo");
-        txtFieldTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldTipoActionPerformed(evt);
-            }
-        });
-
-        txtFieldLevel.setText("Nivel");
-        txtFieldLevel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldLevelActionPerformed(evt);
-            }
-        });
-
-        addParaComputador.setText("Adicionar ao Computador");
-        addParaComputador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addParaComputadorActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout TelaComputadorLayout = new javax.swing.GroupLayout(TelaComputador);
         TelaComputador.setLayout(TelaComputadorLayout);
         TelaComputadorLayout.setHorizontalGroup(
             TelaComputadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TelaComputadorLayout.createSequentialGroup()
-                .addGroup(TelaComputadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(TelaComputadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TelaComputadorLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(TelaComputadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(TelaComputadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnMochilaPcomp)
                             .addComponent(IndicadorMochila))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(TelaComputadorLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(TelaComputadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnCompPmochila)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(TelaComputadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFieldNome)
-                            .addComponent(txtFieldTipo)
-                            .addGroup(TelaComputadorLayout.createSequentialGroup()
-                                .addComponent(IndicadorComputador)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtFieldLevel)
-                            .addGroup(TelaComputadorLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(addParaComputador))))
-                    .addGroup(TelaComputadorLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtAnuncios)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addComponent(IndicadorComputador))
+                    .addComponent(txtAnuncios))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         TelaComputadorLayout.setVerticalGroup(
             TelaComputadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaComputadorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(TelaComputadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(TelaComputadorLayout.createSequentialGroup()
-                        .addComponent(IndicadorComputador)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtFieldLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(IndicadorComputador)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(TelaComputadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCompPmochila)
-                    .addComponent(addParaComputador))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(btnCompPmochila)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtAnuncios)
                 .addGap(18, 18, 18)
                 .addGroup(TelaComputadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(TelaComputadorLayout.createSequentialGroup()
                         .addComponent(btnMochilaPcomp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(32, 32, 32)
                         .addComponent(IndicadorMochila))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -198,32 +143,18 @@ public class ComputadorPokemon extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompPmochilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompPmochilaActionPerformed
-        int index = ListaPokemonComputador.getSelectedIndex();
+        int index = modeloLista.getSelectedIndex();
         if (index != -1) { // Verifica se algo foi selecionado
             
             modeloLista.remove(index);
+        } else {
+            
         }
     }//GEN-LAST:event_btnCompPmochilaActionPerformed
 
     private void btnMochilaPcompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMochilaPcompActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMochilaPcompActionPerformed
-
-    private void txtFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldNomeActionPerformed
-
-    private void txtFieldTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldTipoActionPerformed
-
-    private void txtFieldLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldLevelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldLevelActionPerformed
-
-    private void addParaComputadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addParaComputadorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addParaComputadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,17 +194,13 @@ public class ComputadorPokemon extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IndicadorComputador;
     private javax.swing.JLabel IndicadorMochila;
-    private javax.swing.JList<String> ListaPokemonComputador;
-    private javax.swing.JList<String> ListaPokemonMochila;
     private javax.swing.JPanel TelaComputador;
-    private javax.swing.JButton addParaComputador;
     private javax.swing.JButton btnCompPmochila;
     private javax.swing.JButton btnMochilaPcomp;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JList<String> modeloLista;
+    private javax.swing.JList<String> modeloLista2;
     private javax.swing.JLabel txtAnuncios;
-    private javax.swing.JTextField txtFieldLevel;
-    private javax.swing.JTextField txtFieldNome;
-    private javax.swing.JTextField txtFieldTipo;
     // End of variables declaration//GEN-END:variables
 }

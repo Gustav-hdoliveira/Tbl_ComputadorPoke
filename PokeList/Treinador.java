@@ -11,16 +11,7 @@ import java.util.ArrayList;
  * @author GUSTAVOHENRIQUEDEOLI
  */
 public class Treinador {
-    String nome;
     ArrayList<Pokemon> mochila = new ArrayList<>();
-    
-    public Treinador(String nome_treinador){
-        nome = nome_treinador;
-    }
-    
-    String get_nome(){
-        return nome;
-    }
     
     void set_mochila(Pokemon newPoke){
         mochila.add(newPoke);
